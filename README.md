@@ -93,12 +93,12 @@ git clone https://github.com/rmcolq/bdbv-pipeline-beast-nf.git
 cd bdbv-pipeline-beast-nf
 ```
 
-No other setup is needed. The pipeline pulls the [`articnetworkorg/bdbv-pipeline-beast`](https://hub.docker.com/r/articnetworkorg/bdbv-pipeline-beast) image from Docker Hub automatically, and it contains everything the pipeline needs, including TreeAnnotator. Docker is the default (`-profile standard`). The image is currently built for `linux/amd64` only. Other options:
+No other setup is needed. The pipeline pulls the [`articnetworkorg/bdbv-pipeline-beast`](https://hub.docker.com/r/articnetworkorg/bdbv-pipeline-beast) image from Docker Hub automatically, and it contains everything the pipeline needs, including TreeAnnotator from the current [BEAST X](https://beast.community) release (v10.6.0). Docker is the default (`-profile standard`). The image is built for both `linux/amd64` and `linux/arm64` (for example Apple Silicon). Other options:
 
 | Option | Use |
 |--------|-----|
 | `-profile singularity` | Run the steps in Singularity instead of Docker |
-| `-profile conda` | Create the environment from `environment.yml` rather than using a container. TreeAnnotator comes from the bioconda `beast` package, which is only available for Linux x86-64 and Intel macOS; elsewhere use a container, or install BEAST yourself and give its TreeAnnotator with `--treeannotator` |
+| `-profile conda` | Create the environment from `environment.yml` rather than using a container. TreeAnnotator comes from the bioconda `beast` package, which is older than the container's (v10.5.0) and only available for Linux x86-64 and Intel macOS; for the current release, or elsewhere, use a container, or install BEAST yourself and give its TreeAnnotator with `--treeannotator` |
 | `--wf.container_version TAG` | Use a different image tag, e.g. your own build: `docker build -t articnetworkorg/bdbv-pipeline-beast:dev .` then `--wf.container_version dev` |
 
 ## Running the pipeline
